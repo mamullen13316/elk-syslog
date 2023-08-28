@@ -1,0 +1,23 @@
+filebeat.input:
+  - module: cisco
+
+filebeat.config.modules:
+  path: /etc/filebeat/modules.d/*.yml
+
+reload.enabled: false
+
+setup.template.settings:
+  index.number_of_shards: 1
+
+setup.kibana:
+  host: "kibana:5601"
+
+output.elasticsearch:
+  hosts: ["elasticsearch:9200"]
+
+processsors:
+  - add_host_metadata:
+      when.not.contains.tags: forwarded
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~
+  - add_kubernetes_metadata: ~

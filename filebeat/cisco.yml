@@ -1,0 +1,6 @@
+- module: cisco
+  nexus:
+    enabled: true
+    var.input: udp
+    var.syslog_host: 0.0.0.0
+    var.syslog_port: 9003
